@@ -37,13 +37,9 @@ class testcard {
     
     @Test
     void test_mock_card() {
-        System.out.println("started");
     	Card mockCard = Mockito.mock(Card.class);
-        System.out.println("1");
         when(mockCard.getNumber()).thenReturn(8);
-        System.out.println("2");
         int no = mockCard.getNumber();
-        System.out.println("num: " + no);
         assertEquals(8, mockCard.getNumber());
     }
 }

@@ -1,8 +1,13 @@
-public class ATM {
+import java.text.SimpleDateFormat;
+
+// does not apply the pattern
+public class ATM implements ATMBuilder {
 
 	private int minimumAmount;
 	private int maximumAmount;
 	private int limitTimeForOperation;
+	private int totalFund;
+	private int minimumCash;
 
 	/**
 	 * 
@@ -11,6 +16,21 @@ public class ATM {
 	public String verify(String password) {
 		// TODO - implement ATM.verify
 		throw new UnsupportedOperationException();
+	}
+	
+	@Override
+	public void startup(
+			int totalFund,
+			int maximumWithdrawal,
+			int minimumWithdrawal,
+			int minimumCash
+	){
+		
+	}
+
+	@Override
+	public void useDbProxy(DatabaseProxy dbProxy) {
+		return;
 	}
 
 	/**
@@ -23,8 +43,14 @@ public class ATM {
 	}
 
 	public Message checkAvailabilityOfCashInATM() {
-		// TODO - implement ATM.checkAvailabilityOfCashInATM
-		throw new UnsupportedOperationException();
+		Message isCashAvailable = new Message();
+		if(this.minimumCash <= 0) {
+			isCashAvailable.isProceedable = true;
+			return isCashAvailable;
+		}
+		
+		isCashAvailable.isProceedable = false;
+		return isCashAvailable;
 	}
 
 	public Message verifyInputAmount() {
@@ -32,7 +58,7 @@ public class ATM {
 		throw new UnsupportedOperationException();
 	}
 
-	public Time checkTime() {
+	public SimpleDateFormat checkTime() {
 		// TODO - implement ATM.checkTime
 		throw new UnsupportedOperationException();
 	}
