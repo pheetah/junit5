@@ -23,5 +23,8 @@ class TestAtmInitialization {
 	@Test
 	void atmStartedUpSuccessfully() {
 		assertEquals(this.atm.totalFund, this.totalFundInAtm);
+		assertEquals(this.atm.maximumAmount, this.maximumWithdrawal);
+		assertEquals(this.atm.minimumAmount, this.minimumWithdarawal);
+		assertEquals(this.atm.minimumCash, this.minimumCashInATm);
 	}
 }
