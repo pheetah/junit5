@@ -3,11 +3,11 @@ import java.text.SimpleDateFormat;
 // does not apply the pattern
 public class ATM implements ATMBuilder {
 
-	private int minimumAmount;
-	private int maximumAmount;
+	public int minimumAmount;
+	public int maximumAmount;
 	private int limitTimeForOperation;
-	private int totalFund;
-	private int minimumCash;
+	public int totalFund;
+	public int minimumCash;
 
 	/**
 	 * 
@@ -25,7 +25,10 @@ public class ATM implements ATMBuilder {
 			int minimumWithdrawal,
 			int minimumCash
 	){
-		
+		this.totalFund = totalFund;
+		this.maximumAmount = maximumWithdrawal;
+		this.minimumAmount = minimumWithdrawal;
+		this.minimumCash = minimumCash;
 	}
 
 	@Override

@@ -32,3 +32,5 @@
 /testcard.class
 /testCardCreation.class
 /test_mockito.class
+/ATMBuilder.class
+/TestAtmInitialization.class
