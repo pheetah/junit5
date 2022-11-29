@@ -3,6 +3,7 @@ import java.text.SimpleDateFormat;
 // does not apply the pattern
 public class ATM implements ATMBuilder {
 
+	//converted member variables to public to avoid getters, since not a serious project
 	public int minimumAmount;
 	public int maximumAmount;
 	private int limitTimeForOperation;
@@ -25,6 +26,10 @@ public class ATM implements ATMBuilder {
 			int minimumWithdrawal,
 			int minimumCash
 	){
+		if(totalFund < 0) {
+			throw new UnsupportedOperationException();
+		}
+		
 		this.totalFund = totalFund;
 		this.maximumAmount = maximumWithdrawal;
 		this.minimumAmount = minimumWithdrawal;
