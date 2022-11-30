@@ -4,7 +4,7 @@ public class DatabaseProxy {
 	 * 
 	 * @param accountNum
 	 */
-	public string selectPasswordByAccountNum(int accountNum) {
+	public String selectPasswordByAccountNum(int accountNum) {
 		// TODO - implement DatabaseProxy.selectPasswordByAccountNum
 		throw new UnsupportedOperationException();
 	}

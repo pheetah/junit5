@@ -9,7 +9,8 @@ public class ATM implements ATMBuilder {
 	private int limitTimeForOperation;
 	public int totalFund;
 	public int minimumCash;
-
+	private DatabaseProxy dbProxy;
+	private NetworkToBank networkToBank;
 	/**
 	 * 
 	 * @param password
@@ -34,13 +35,24 @@ public class ATM implements ATMBuilder {
 		this.maximumAmount = maximumWithdrawal;
 		this.minimumAmount = minimumWithdrawal;
 		this.minimumCash = minimumCash;
+		
+		//change here later with proper logic
+		if(this.networkToBank != null) {
+			this.networkToBank.openConnection();
+		}
 	}
 
 	@Override
-	public void useDbProxy(DatabaseProxy dbProxy) {
-		return;
+	public ATM useDbProxy(DatabaseProxy dbProxy) {
+		return this;
 	}
 
+	@Override
+	public ATM useNetworkToBank(NetworkToBank networkToBank) {
+		this.networkToBank = networkToBank;
+		return this;
+	}
+	
 	/**
 	 * 
 	 * @param accountNum

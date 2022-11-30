@@ -1,4 +1,5 @@
 import org.junit.jupiter.api.Test;
+import org.mockito.Mockito;
 import org.junit.jupiter.api.BeforeEach;
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -56,4 +57,20 @@ class TestAtmInitialization {
 			);
 	    });
 	}
+	
+	@Test
+	void test_atm_should_create_bank_connection_when_atm_starts_up() {
+		NetworkToBank networkToBank = Mockito.mock(NetworkToBank.class);
+		this.atm
+		.useNetworkToBank(networkToBank)
+		.startup(
+				this.totalFundInAtm, 
+				this.maximumWithdrawal, 
+				this.minimumWithdarawal, 
+				this.minimumCashInATm
+		);
+		
+		Mockito.verify(networkToBank, Mockito.times(1)).openConnection();
+	}
+
 }

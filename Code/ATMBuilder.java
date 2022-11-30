@@ -6,5 +6,7 @@ public interface ATMBuilder {
 		int minimumCash
 	);
 	
-	void useDbProxy(DatabaseProxy dbProxy);
+	ATM useDbProxy(DatabaseProxy dbProxy);
+	ATM useNetworkToBank(NetworkToBank networkToBank);
+	//ATM useNetworkToBank(CashDispenser cashDispenser);
 }

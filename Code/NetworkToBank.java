@@ -1,21 +1,21 @@
 public class NetworkToBank {
 
 	private Log log;
-	private InetAddress bankAddress;
+	private int bankAddress;
 
 	/**
 	 * 
 	 * @param log
 	 * @param bankAddress
 	 */
-	public NetworkToBank(Log log, InetAddress bankAddress) {
+	public NetworkToBank(Log log, int bankAddress) {
 		// TODO - implement NetworkToBank.NetworkToBank
-		throw new UnsupportedOperationException();
+		//throw new UnsupportedOperationException();
 	}
 
 	public void openConnection() {
 		// TODO - implement NetworkToBank.openConnection
-		throw new UnsupportedOperationException();
+		//throw new UnsupportedOperationException();
 	}
 
 	public void closeConnection() {
@@ -28,7 +28,8 @@ public class NetworkToBank {
 	 * @param message
 	 * @param balances
 	 */
-	public Status sendMessage(Message message, Balances balances) {
+	// temporarily comment those lines
+	public boolean sendMessage(Message message, int balances) {
 		// TODO - implement NetworkToBank.sendMessage
 		throw new UnsupportedOperationException();
 	}
