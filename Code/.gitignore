@@ -34,3 +34,6 @@
 /test_mockito.class
 /ATMBuilder.class
 /TestAtmInitialization.class
+/Money.class
+/TestAtmInitialization$AtmConfiguredCorrectly.class
+/TestAtmInitialization$AtmIsNotConfiguredCorrectly.class

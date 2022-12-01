@@ -8,5 +8,6 @@ public interface ATMBuilder {
 	
 	ATM useDbProxy(DatabaseProxy dbProxy);
 	ATM useNetworkToBank(NetworkToBank networkToBank);
+	ATM useCashDispenser(CashDispenser cashDispenser);
 	//ATM useNetworkToBank(CashDispenser cashDispenser);
 }
