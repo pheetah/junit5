@@ -36,20 +36,8 @@ public class ATM implements ATMBuilder {
 		this.totalFund = totalFund;
 		this.maximumAmount = maximumWithdrawal;
 		this.minimumAmount = minimumWithdrawal;
-		this.minimumCash = minimumCash;
-		
-		Money initialCash = new Money(this.totalFund);
-		
-		//change here later with proper logic
-		this.networkToBank.openConnection();
-		this.cashDispenser.setInitialCash(initialCash);
+		this.minimumCash = minimumCash;		
 	}
-
-	@Override
-	public ATM useDbProxy(DatabaseProxy dbProxy) {
-		return this;
-	}
-	
 
 	@Override
 	public ATM useNetworkToBank(NetworkToBank networkToBank) {
@@ -82,6 +70,17 @@ public class ATM implements ATMBuilder {
 		isCashAvailable.isProceedable = false;
 		return isCashAvailable;
 	}
+	
+	public void dispenseInitialCash(OperatorPanel panel) {
+		Money initalCash = panel.getInitialCash();
+		this.cashDispenser.setInitialCash(initalCash);
+	}
+	
+	public void switchOn(OperatorPanel panel) {
+		this.startup(100, 0, 0, 0);
+		Money initalCash = panel.getInitialCash();
+		this.cashDispenser.setInitialCash(initalCash);
+	}
 
 	public Message verifyInputAmount() {
 		// TODO - implement ATM.verifyInputAmount
@@ -91,6 +90,10 @@ public class ATM implements ATMBuilder {
 	public SimpleDateFormat checkTime() {
 		// TODO - implement ATM.checkTime
 		throw new UnsupportedOperationException();
+	}
+	
+	public void connectToBank() {
+		this.networkToBank.openConnection();
 	}
 
 }

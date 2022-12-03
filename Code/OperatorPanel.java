@@ -19,9 +19,21 @@ public class OperatorPanel {
 
 	public Money getInitialCash() {
 		// TODO - implement OperatorPanel.getInitialCash
-		Money initialMoney = new Money(atm.totalFund);
+		Money initialMoney = new Money(100);
 		return initialMoney;
 		//throw new UnsupportedOperationException();
 	}
-
+	
+	public void setAtmInitials(
+			int maxAmount,
+			int minAmount,
+			int minCash
+	) {
+		this.atm.maximumAmount = maxAmount;
+		this.atm.minimumAmount = minAmount;
+		this.atm.minimumCash = minCash;
+		
+		this.atm
+	}
+	
 }

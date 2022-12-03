@@ -2,6 +2,7 @@ import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
 import org.junit.jupiter.api.BeforeEach;
 import static org.junit.jupiter.api.Assertions.*;
+import static org.mockito.Mockito.when;  
 
 // Tests: 4.1.1 -> FR1
 class TestAtmInitialization {
@@ -14,6 +15,7 @@ class TestAtmInitialization {
 		private ATM atm;
 		private NetworkToBank networkToBank;
 		private CashDispenser cashDispenser;
+		
 		@BeforeEach
 		void initializeAtm() {
 			this.atm = new ATM();
@@ -69,7 +71,12 @@ class TestAtmInitialization {
 		}
 		
 		@Test
-		void test_atm_should_create_bank_connection_when_atm_starts_up() {
+		void test_atm_should_set_initial_cash_when_received_from_operator_panel() {
+			Money mockInitialCash = Mockito.mock(Money.class);
+
+			OperatorPanel panel = Mockito.mock(OperatorPanel.class);
+			when(panel.getInitialCash()).thenReturn(mockInitialCash);
+			
 			this.atm
 			.startup(
 					this.totalFundInAtm, 
@@ -78,7 +85,9 @@ class TestAtmInitialization {
 					this.minimumCashInATm
 			);
 			
-			Mockito.verify(networkToBank, Mockito.times(1)).openConnection();
+			this.atm.dispenseInitialCash(panel);
+			
+			Mockito.verify(this.cashDispenser, Mockito.times(1)).setInitialCash(mockInitialCash);
 		}
 	}
 
