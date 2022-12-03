@@ -11,11 +11,6 @@ public class OperatorPanel {
 		this.atm = atm;
 		//throw new UnsupportedOperationException();
 	}
-	
-	public void switchOn() {
-		//I'm aware it's bad practice.
-		this.atm.startup(100,0,0,0);
-	}
 
 	public Money getInitialCash() {
 		// TODO - implement OperatorPanel.getInitialCash
@@ -24,16 +19,12 @@ public class OperatorPanel {
 		//throw new UnsupportedOperationException();
 	}
 	
-	public void setAtmInitials(
+	public void setAtmMaxMinWithdrawalsAndBankingConfig(
 			int maxAmount,
 			int minAmount,
 			int minCash
 	) {
-		this.atm.maximumAmount = maxAmount;
-		this.atm.minimumAmount = minAmount;
-		this.atm.minimumCash = minCash;
-		
-		this.atm
+		this.atm.setBankingConfigurationAndConnection(maxAmount, minAmount, minCash);
 	}
 	
 }

@@ -89,6 +89,23 @@ class TestAtmInitialization {
 			
 			Mockito.verify(this.cashDispenser, Mockito.times(1)).setInitialCash(mockInitialCash);
 		}
+		
+		@Test
+		void test_atm_should_open_connection_to_bank_when_configuration_is_set_up() {			
+			this.atm
+			.startup(
+					this.totalFundInAtm, 
+					this.maximumWithdrawal, 
+					this.minimumWithdarawal, 
+					this.minimumCashInATm
+			);
+			
+			OperatorPanel panel = new OperatorPanel(this.atm);
+			
+			panel.setAtmMaxMinWithdrawalsAndBankingConfig(10, 10, 10);
+			
+			Mockito.verify(this.networkToBank, Mockito.times(1)).openConnection();
+		}
 	}
 
 	public static class AtmIsNotConfiguredCorrectly{

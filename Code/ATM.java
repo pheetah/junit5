@@ -81,6 +81,18 @@ public class ATM implements ATMBuilder {
 		Money initalCash = panel.getInitialCash();
 		this.cashDispenser.setInitialCash(initalCash);
 	}
+	
+	public void setBankingConfigurationAndConnection(
+			int maximumWithdrawal,
+			int minimumWithdrawal,
+			int minimumCash
+	) {
+		this.maximumAmount = maximumWithdrawal;
+		this.minimumAmount = minimumWithdrawal;
+		this.minimumCash = minimumCash;		
+
+		this.networkToBank.openConnection();
+	}
 
 	public Message verifyInputAmount() {
 		// TODO - implement ATM.verifyInputAmount
