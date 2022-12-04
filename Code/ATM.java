@@ -16,13 +16,20 @@ public class ATM implements ATMBuilder {
 	public String atmState = "OFF"; //normally would create an Enum or sth.
 	public Card lastInsertedCard;
 	private int latestAccount;
+	private DatabaseProxy databaseProxy;
 	/**
 	 * 
 	 * @param password
 	 */
 	public boolean verify(String password) {
-		// TODO - implement ATM.verify
-		return true;
+		String dbPassword = this.databaseProxy.selectPasswordByAccountNum(this.latestAccount);
+		
+		if(password == dbPassword) {
+			return true;
+		}else {
+			return false;
+		}
+		
 	}
 	
 	@Override
@@ -53,6 +60,11 @@ public class ATM implements ATMBuilder {
 	@Override
 	public ATM useCashDispenser(CashDispenser cashDispenser) {
 		this.cashDispenser = cashDispenser;
+		return this;
+	}
+	
+	public ATM useDbProxy(DatabaseProxy databaseProxy) {
+		this.databaseProxy = databaseProxy;
 		return this;
 	}
 	
