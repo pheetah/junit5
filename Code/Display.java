@@ -1,5 +1,7 @@
 public class Display {
 
+	public String displayMessage = "default";
+	
 	public Display() {
 		// TODO - implement Display.Display
 		throw new UnsupportedOperationException();
@@ -10,8 +12,9 @@ public class Display {
 	 * @param message
 	 */
 	public void display(String message) {
+		this.displayMessage = message;
 		// TODO - implement Display.display
-		throw new UnsupportedOperationException();
+		//throw new UnsupportedOperationException();
 	}
 
 	/**

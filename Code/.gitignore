@@ -37,3 +37,6 @@
 /Money.class
 /TestAtmInitialization$AtmConfiguredCorrectly.class
 /TestAtmInitialization$AtmIsNotConfiguredCorrectly.class
+/TestShutDown$AtmConfiguredCorrectly.class
+/TestShutDown$AtmNotConfiguredCorrectly.class
+/TestShutDown.class

@@ -13,6 +13,7 @@ public class ATM implements ATMBuilder {
 	private NetworkToBank networkToBank;
 	private Display display;
 	private CashDispenser cashDispenser;
+	public String atmState = "OFF"; //normally would create an Enum or sth.
 	/**
 	 * 
 	 * @param password
@@ -36,7 +37,8 @@ public class ATM implements ATMBuilder {
 		this.totalFund = totalFund;
 		this.maximumAmount = maximumWithdrawal;
 		this.minimumAmount = minimumWithdrawal;
-		this.minimumCash = minimumCash;		
+		this.minimumCash = minimumCash;
+		this.atmState = "IDLE";
 	}
 
 	@Override
@@ -51,6 +53,14 @@ public class ATM implements ATMBuilder {
 		this.cashDispenser = cashDispenser;
 		return this;
 	}
+	
+	
+	@Override
+	public ATM useDisplay(Display display) {
+		this.display = display;
+		return this;
+	}
+	
 	/**
 	 * 
 	 * @param accountNum
@@ -92,6 +102,23 @@ public class ATM implements ATMBuilder {
 		this.minimumCash = minimumCash;		
 
 		this.networkToBank.openConnection();
+	}
+	
+	public void switchOff() {
+		this.shutdown();
+		
+		try {
+			this.networkToBank.closeConnection();
+		}catch(Exception e) {
+			// normally it should be declared in separate module as constant!
+			String shutdownErrorMessage = "Can't close network connection, contact mainteiners!";
+			
+			this.display.display(shutdownErrorMessage);
+		}
+	}
+	
+	public void shutdown() {
+		this.atmState = "OFF";
 	}
 
 	public Message verifyInputAmount() {

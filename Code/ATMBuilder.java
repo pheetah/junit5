@@ -8,5 +8,6 @@ public interface ATMBuilder {
 	
 	ATM useNetworkToBank(NetworkToBank networkToBank);
 	ATM useCashDispenser(CashDispenser cashDispenser);
+	ATM useDisplay(Display display);
 	//ATM useNetworkToBank(CashDispenser cashDispenser);
 }

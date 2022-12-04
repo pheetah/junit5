@@ -27,4 +27,8 @@ public class OperatorPanel {
 		this.atm.setBankingConfigurationAndConnection(maxAmount, minAmount, minCash);
 	}
 	
+	
+	public void shutdownAtm() {
+		this.atm.switchOff();
+	}
 }
