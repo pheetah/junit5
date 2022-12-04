@@ -1,4 +1,5 @@
 import static org.junit.jupiter.api.Assertions.*;
+import static org.mockito.Mockito.when;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -56,5 +57,28 @@ class TestMainFunctionality {
 		this.account.insertCard(this.cardReader, this.card);
 		
 		Mockito.verify(mock_atm, Mockito.times(1)).showErrorMessage("Inserted card is not valid.");
+	}
+	
+	@Test
+	void test_should_authorize_user_when_correct_pin_is_entered() {
+		String validPin = "1234";
+		ATM mock_atm = Mockito.mock(ATM.class);
+		when(mock_atm.verify(validPin)).thenReturn(true);
+		
+		this.account.account_number = 1234;
+		this.account.enter(mock_atm, validPin);
+		
+		Mockito.verify(mock_atm, Mockito.times(1)).readAccountNum(this.account.account_number);
+	}
+	
+	@Test
+	void test_should_show_error_message_on_display_when_incorrect_pin_is_entered() {
+		ATM mock_atm = Mockito.mock(ATM.class);
+		when(mock_atm.verify("1345")).thenReturn(false);
+		
+		this.account.account_number = 1234;
+		this.account.enter(mock_atm, "1234");
+				
+		Mockito.verify(mock_atm, Mockito.times(1)).showErrorMessage("You entered the wrong PIN.");
 	}
 }

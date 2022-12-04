@@ -12,4 +12,15 @@ public class Account {
 		cardReader.sendCardInformation();
 	}
 	
+	
+	public void enter(ATM atm, String password) {
+		boolean isValid = atm.verify(password);
+		
+		if(isValid) {
+			atm.readAccountNum(this.account_number);
+		}else {
+			atm.showErrorMessage("You entered the wrong PIN.");
+		}
+	}
+	
 }

@@ -15,13 +15,14 @@ public class ATM implements ATMBuilder {
 	private CashDispenser cashDispenser;
 	public String atmState = "OFF"; //normally would create an Enum or sth.
 	public Card lastInsertedCard;
+	private int latestAccount;
 	/**
 	 * 
 	 * @param password
 	 */
-	public String verify(String password) {
+	public boolean verify(String password) {
 		// TODO - implement ATM.verify
-		throw new UnsupportedOperationException();
+		return true;
 	}
 	
 	@Override
@@ -67,8 +68,7 @@ public class ATM implements ATMBuilder {
 	 * @param accountNum
 	 */
 	public void readAccountNum(int accountNum) {
-		// TODO - implement ATM.readAccountNum
-		throw new UnsupportedOperationException();
+		this.latestAccount = accountNum;
 	}
 
 	public Message checkAvailabilityOfCashInATM() {
