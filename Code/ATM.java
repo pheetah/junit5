@@ -174,4 +174,9 @@ public class ATM implements ATMBuilder {
 		}
 	}
 	
+	
+	public void deposit(int amount) {
+		this.cashDispenser.insertCash(amount);
+		this.databaseProxy.plusBalance(amount);
+	}
 }

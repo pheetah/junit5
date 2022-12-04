@@ -19,9 +19,8 @@ public class DatabaseProxy {
 		System.out.println("minus balance: " + amount);
 	}
 
-	public void plusBalance() {
-		// TODO - implement DatabaseProxy.plusBalance
-		throw new UnsupportedOperationException();
+	public void plusBalance(int amount) {
+		System.out.println("plus balance: " + amount);
 	}
 
 	public int createNewAccount() {

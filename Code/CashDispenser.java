@@ -7,16 +7,14 @@ public class CashDispenser {
 	 * 
 	 * @param log
 	 */
-	public CashDispenser() {
-		// TODO - implement CashDispenser.CashDispenser
-		throw new UnsupportedOperationException();
-	}
+	public CashDispenser() {}
 
 	/**
 	 * 
 	 * @param initialCash
 	 */
 	public void setInitialCash(Money initialCash) {
+		System.out.println("set initial cash value: " + initialCash.value);
 	}
 
 	/**
@@ -33,12 +31,11 @@ public class CashDispenser {
 	 * @param amount
 	 */
 	public void dispenseCash(int amount) {
-
+		System.out.println("dispence cash: " + amount);
 	}
 
-	public void putCash() {
-		// TODO - implement CashDispenser.putCash
-		throw new UnsupportedOperationException();
+	public void insertCash(int amount) {
+		System.out.println("inserted cash: " + amount);
 	}
 
 }

@@ -34,4 +34,8 @@ public class Account {
 	public void withdraw(ATM atm, int amount) {
 		atm.deliverCash(amount);
 	}
+	
+	public void deposit(ATM atm, int amount) {
+		atm.deposit(amount);
+	}
 }

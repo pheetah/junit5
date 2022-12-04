@@ -150,4 +150,14 @@ class TestMainFunctionality {
 		
 		Mockito.verify(this.display, Mockito.times(1)).display("You don't have enough balance.");
 	}
+    
+	@Test
+	void test_should_deposit_cash_when_users_enters_an_amount() {		
+		this.account.account_number = 1234;
+		int user_entered_deposit = 10;
+		this.account.deposit(this.atm, user_entered_deposit);
+
+		Mockito.verify(this.dbProxy, Mockito.times(1)).plusBalance(user_entered_deposit);
+		Mockito.verify(this.cashDispenser, Mockito.times(1)).insertCash(user_entered_deposit);
+	}
 }
