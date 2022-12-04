@@ -15,9 +15,8 @@ public class DatabaseProxy {
 		this.frozenCard = card;
 	}
 
-	public void minusBalance() {
-		// TODO - implement DatabaseProxy.minusBalance
-		throw new UnsupportedOperationException();
+	public void minusBalance(int amount) {
+		System.out.println("minus balance: " + amount);
 	}
 
 	public void plusBalance() {
@@ -30,9 +29,10 @@ public class DatabaseProxy {
 		throw new UnsupportedOperationException();
 	}
 
-	public void checkTheBalance() {
-		// TODO - implement DatabaseProxy.checkTheBalance
-		throw new UnsupportedOperationException();
+	public int checkTheBalance(int amount) {
+		// doesn't matter since it's going to be mocked in tests;
+		// Since no tests will be added for DatabaseProxy class
+		return 100;
 	}
 
 }

@@ -31,7 +31,7 @@ public class Account {
 	}
 	
 	
-	public void enterWrongPasswordThreeTimes() {
-		
+	public void withdraw(ATM atm, int amount) {
+		atm.deliverCash(amount);
 	}
 }

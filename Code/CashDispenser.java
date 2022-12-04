@@ -7,7 +7,7 @@ public class CashDispenser {
 	 * 
 	 * @param log
 	 */
-	public CashDispenser(Log log) {
+	public CashDispenser() {
 		// TODO - implement CashDispenser.CashDispenser
 		throw new UnsupportedOperationException();
 	}
@@ -17,8 +17,6 @@ public class CashDispenser {
 	 * @param initialCash
 	 */
 	public void setInitialCash(Money initialCash) {
-		// TODO - implement CashDispenser.setInitialCash
-		throw new UnsupportedOperationException();
 	}
 
 	/**
@@ -34,9 +32,8 @@ public class CashDispenser {
 	 * 
 	 * @param amount
 	 */
-	public void dispenseCash(Money amount) {
-		// TODO - implement CashDispenser.dispenseCash
-		throw new UnsupportedOperationException();
+	public void dispenseCash(int amount) {
+
 	}
 
 	public void putCash() {

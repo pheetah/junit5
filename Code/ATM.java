@@ -160,4 +160,18 @@ public class ATM implements ATMBuilder {
 		this.display.display(errorMessage);
 	}
 
+	public boolean deliverCash(int amount) {
+		int availableBalance = this.databaseProxy.checkTheBalance(amount);
+		
+		if(availableBalance >= amount) {
+			this.databaseProxy.minusBalance(amount);
+			this.cashDispenser.dispenseCash(amount);
+
+			return true;
+		}else {
+			this.display.display("You don't have enough balance.");
+			return false;
+		}
+	}
+	
 }
