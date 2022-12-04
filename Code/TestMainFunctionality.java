@@ -106,4 +106,18 @@ class TestMainFunctionality {
 		
 		assertEquals(this.atm.verify(enteredPin), false);
 	}
+	
+	@Test
+	void test_atm_should_freeze_card_when_user_enters_wrong_password_three_times() {
+		ATM mock_atm = Mockito.mock(ATM.class);
+		when(mock_atm.verify("1345")).thenReturn(false);
+		
+		this.account.account_number = 1234;
+		this.account.enter(mock_atm, "1234");
+		this.account.enter(mock_atm, "1234");
+		this.account.enter(mock_atm, "1234");
+
+		Mockito.verify(mock_atm, Mockito.times(3)).showErrorMessage("You entered the wrong PIN.");
+		Mockito.verify(mock_atm, Mockito.times(1)).freezeCard();
+	}
 }

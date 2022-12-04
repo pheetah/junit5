@@ -109,6 +109,10 @@ public class ATM implements ATMBuilder {
 		this.lastInsertedCard = card;
 	}
 	
+	public void freezeCard() {
+		this.databaseProxy.freezeCard(lastInsertedCard);
+	}
+	
 	public void setBankingConfigurationAndConnection(
 			int maximumWithdrawal,
 			int minimumWithdrawal,

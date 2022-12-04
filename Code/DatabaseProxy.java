@@ -1,5 +1,7 @@
 public class DatabaseProxy {
 
+	public Card frozenCard;
+	
 	/**
 	 * 
 	 * @param accountNum
@@ -7,6 +9,10 @@ public class DatabaseProxy {
 	public String selectPasswordByAccountNum(int accountNum) {
 		// TODO - implement DatabaseProxy.selectPasswordByAccountNum
 		throw new UnsupportedOperationException();
+	}
+	
+	public void freezeCard(Card card) {
+		this.frozenCard = card;
 	}
 
 	public void minusBalance() {
