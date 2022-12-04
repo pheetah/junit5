@@ -14,6 +14,7 @@ public class ATM implements ATMBuilder {
 	private Display display;
 	private CashDispenser cashDispenser;
 	public String atmState = "OFF"; //normally would create an Enum or sth.
+	public Card lastInsertedCard;
 	/**
 	 * 
 	 * @param password
@@ -92,6 +93,10 @@ public class ATM implements ATMBuilder {
 		this.cashDispenser.setInitialCash(initalCash);
 	}
 	
+	public void setCardInformation(Card card){
+		this.lastInsertedCard = card;
+	}
+	
 	public void setBankingConfigurationAndConnection(
 			int maximumWithdrawal,
 			int minimumWithdrawal,
@@ -133,6 +138,10 @@ public class ATM implements ATMBuilder {
 	
 	public void connectToBank() {
 		this.networkToBank.openConnection();
+	}
+	
+	public void showErrorMessage(String errorMessage) {
+		this.display.display(errorMessage);
 	}
 
 }

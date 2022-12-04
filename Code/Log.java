@@ -18,7 +18,7 @@ public class Log {
 	 * 
 	 * @param status
 	 */
-	public void logResponse(Status status) {
+	public void logResponse(String status) {
 		// TODO - implement Log.logResponse
 		throw new UnsupportedOperationException();
 	}

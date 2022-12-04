@@ -1,19 +1,33 @@
 public class CardReader {
 
 	private ATM atm;
+	private Card card;
 
 	/**
 	 * 
 	 * @param atm
 	 */
 	public CardReader(ATM atm) {
-		// TODO - implement CardReader.CardReader
-		throw new UnsupportedOperationException();
+		this.atm = atm;
+	}
+	
+	public boolean checkCardValidity(Card card) {
+		if(card.status == "VALID") {
+			return true;
+		}else {
+			this.atm.showErrorMessage("Inserted card is not valid.");
+			return false;
+		}
 	}
 
-	public Card readCard() {
-		// TODO - implement CardReader.readCard
-		throw new UnsupportedOperationException();
+	public Card readCard(Card card) {
+		this.card = card;
+		
+		return this.card;
+	}
+	
+	public void sendCardInformation() {
+		this.atm.setCardInformation(this.card);
 	}
 
 	public void ejectCard() {

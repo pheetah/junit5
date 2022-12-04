@@ -1,8 +1,15 @@
 public class Account {
 
-	private int account_number;
-	private String password;
-	private double balance;
-	private int accountType;
+	// not losing time on creating gettters / setters
+	public int account_number;
+	public String password;
+	public double balance;
+	public int accountType;
 
+	public void insertCard(CardReader cardReader, Card card) {
+		cardReader.checkCardValidity(card);
+		cardReader.readCard(card);
+		cardReader.sendCardInformation();
+	}
+	
 }

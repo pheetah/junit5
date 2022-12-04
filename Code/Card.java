@@ -1,6 +1,7 @@
 public class Card {
 
 	private int number;
+	public String status = "VALID"; // "VALID" or "INVALID"
 
 	/**
 	 * 
