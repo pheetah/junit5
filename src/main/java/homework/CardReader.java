@@ -32,9 +32,8 @@ public class CardReader {
 		this.atm.setCardInformation(this.card);
 	}
 
-	public void ejectCard() {
-		// TODO - implement CardReader.ejectCard
-		throw new UnsupportedOperationException();
+	public void ejectCard(ATM atm) {
+		System.out.println("Performing: Eject Card!");
 	}
 
 	public void retainCard() {

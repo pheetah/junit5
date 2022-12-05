@@ -9,8 +9,7 @@ public class DatabaseProxy {
 	 * @param accountNum
 	 */
 	public String selectPasswordByAccountNum(int accountNum) {
-		// TODO - implement DatabaseProxy.selectPasswordByAccountNum
-		throw new UnsupportedOperationException();
+		return "any";
 	}
 	
 	public void freezeCard(Card card) {
@@ -28,6 +27,10 @@ public class DatabaseProxy {
 	public int createNewAccount() {
 		// TODO - implement DatabaseProxy.createNewAccount
 		throw new UnsupportedOperationException();
+	}
+	
+	public int selectBalanceInformation() {
+		return 100;
 	}
 
 	public int checkTheBalance(int amount) {

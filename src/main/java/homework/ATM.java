@@ -187,4 +187,9 @@ public class ATM implements ATMBuilder {
 		
 		boolean isMoneySent = transaction.transfer(this.latestAccount, accountIdToSend, amount);
 	}
+	
+	public void checkBalance() {
+		int balance = this.databaseProxy.selectBalanceInformation();
+		this.display.display(Integer.toString(balance) + " TL");
+	}
 }

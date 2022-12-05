@@ -45,4 +45,8 @@ public class Account {
 		atm.transfer(accountIdToSend, amount);
 	}
 	
+	public void checkBalance(ATM atm) {
+		atm.checkBalance();
+	}
+	
 }

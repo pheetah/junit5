@@ -194,4 +194,25 @@ class TestMainFunctionality {
 		Mockito.verify(this.dbProxy, Mockito.times(1)).minusBalance(this.account.account_number, user_entered_amount);
 		Mockito.verify(this.dbProxy, Mockito.times(1)).plusBalance(accountIdToSend, user_entered_amount);
 	}
+	
+	@Test
+	void test_should_select_balance_information_when_needed_to_display() {		
+		this.account.account_number = 1234;
+						
+		this.account.checkBalance(this.atm);
+
+		Mockito.verify(this.dbProxy, Mockito.times(1)).selectBalanceInformation();
+	}
+
+	@Test
+	void test_should_display_the_balance_with_curreny_when_received_from_db() {		
+		this.account.account_number = 1234;
+		
+		int return_mock_balance = 100;
+		when(this.dbProxy.selectBalanceInformation()).thenReturn(return_mock_balance);
+		
+		this.account.checkBalance(this.atm);
+
+		Mockito.verify(this.display, Mockito.times(1)).display(return_mock_balance + " TL");
+	}
 }
