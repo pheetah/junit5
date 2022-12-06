@@ -193,6 +193,10 @@ public class ATM implements ATMBuilder {
 		Transaction transaction = new Transaction(this.databaseProxy);
 		
 		boolean isMoneySent = transaction.transfer(this.latestAccount, accountIdToSend, amount);
+		
+		if(!isMoneySent) {
+			this.display.display("You can not send money, not enough balance.");
+		}
 	}
 	
 	public void checkBalance() {
