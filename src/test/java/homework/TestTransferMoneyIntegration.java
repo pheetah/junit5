@@ -8,6 +8,7 @@ import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
 
+
 class TestTransferMoneyIntegration {
 
 	private int maximumWithdrawal = 5;
@@ -97,5 +98,99 @@ class TestTransferMoneyIntegration {
 		int newReceiverBalance = realDatabase.balances.get(1234);
 		
 		Mockito.verify(this.display, Mockito.times(1)).display("You can not send money, not enough balance.");
+	}
+	
+	
+	//normally I would create a better enter() function
+	@Test
+	void test_should_not_allow_user_to_verify_if_account_is_not_valid() {
+		DatabaseProxy realDatabase = new DatabaseProxy();
+		realDatabase.accounts.put(1234, "1234");
+		realDatabase.accounts.put(9876, "4567");
+		
+		this.atm.useDbProxy(realDatabase);
+		
+		int invalidUserId = 7302;
+		
+		this.account.account_number = invalidUserId;
+		this.account.enter(this.atm, "3751");
+		
+		Mockito.verify(this.display, Mockito.times(1)).display("Specified account does not exist.");
+	}
+	
+	
+	@Test
+	void test_should_display_message_when_user_enters_wrong_pin() {
+		DatabaseProxy realDatabase = new DatabaseProxy();
+		realDatabase.accounts.put(1234, "1234");
+		realDatabase.accounts.put(9876, "4567");
+		
+		this.atm.useDbProxy(realDatabase);
+		
+		int validUserId = 1234;
+		
+		this.account.account_number = validUserId;
+		this.account.enter(this.atm, "3751");
+		
+		Mockito.verify(this.display, Mockito.times(1)).display("You entered the wrong PIN.");
+	}
+
+	@Test
+	void test_should_increase_balance_when_user_deposits() {
+		DatabaseProxy realDatabase = new DatabaseProxy();
+		realDatabase.accounts.put(1234, "1234");
+		realDatabase.accounts.put(9876, "4567");
+		realDatabase.balances.put(1234, 100);
+		realDatabase.balances.put(9876, 100);
+
+		this.atm.useDbProxy(realDatabase);
+		
+		int validUserId = 1234;
+		
+		this.account.account_number = validUserId;
+		this.account.enter(this.atm, "1234");
+		this.account.deposit(this.atm, 13);
+		
+		int newBalance = realDatabase.balances.get(1234);
+		assertEquals(newBalance, 113);
+	}
+	
+	@Test
+	void test_should_decrease_balance_when_user_withdraws_with_enough_balance() {
+		DatabaseProxy realDatabase = new DatabaseProxy();
+		realDatabase.accounts.put(1234, "1234");
+		realDatabase.accounts.put(9876, "4567");
+		realDatabase.balances.put(1234, 100);
+		realDatabase.balances.put(9876, 100);
+
+		this.atm.useDbProxy(realDatabase);
+		
+		int validUserId = 1234;
+		
+		this.account.account_number = validUserId;
+		this.account.enter(this.atm, "1234");
+		this.account.withdraw(this.atm, 25);
+		
+		int newBalance = realDatabase.balances.get(1234);
+		assertEquals(newBalance, 75);
+	}
+	
+	@Test
+	void test_should_display_error_messsage_when_user_withdraws_with_enough_balance() {
+		DatabaseProxy realDatabase = new DatabaseProxy();
+		realDatabase.accounts.put(1234, "1234");
+		realDatabase.accounts.put(9876, "4567");
+		realDatabase.balances.put(1234, 100);
+		realDatabase.balances.put(9876, 100);
+
+		this.atm.useDbProxy(realDatabase);
+		
+		int validUserId = 1234;
+		
+		this.account.account_number = validUserId;
+		this.account.enter(this.atm, "1234");
+		this.account.withdraw(this.atm, 125);
+		
+		Mockito.verify(this.display, Mockito.times(1)).display("You don't have enough balance.");
 	}
 }
