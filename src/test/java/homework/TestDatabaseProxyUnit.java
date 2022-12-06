@@ -77,12 +77,37 @@ class TestDatabaseProxyUnit {
 	
 	@Test
 	void test_should_throw_error_on_balance_information_when_asked_by_invalid_user() {
+		int invalidUserId = 83051;
 		//not paying attention to the specific error class
 		//throwing UnsupportedOperationException in every case to be fast
 		Exception exception = assertThrows(UnsupportedOperationException.class, () -> {
-			int balance = this.dbProxy.checkTheBalance(83051);
+			int balance = this.dbProxy.checkTheBalance(invalidUserId);
 			
 			int newAmount = this.dbProxy.balances.get(1234);
 		});
+	}
+	
+	@Test
+	void test_should_not_verify_an_invalid_user() {
+		int invalidUserId = 83051;
+
+		
+		//not paying attention to the specific error class
+		//throwing UnsupportedOperationException in every case to be fast
+		Exception exception = assertThrows(UnsupportedOperationException.class, () -> {
+			String password = this.dbProxy.selectPasswordByAccountNum(invalidUserId);
+		});
+	}
+
+	
+	@Test
+	void test_should_verify_a_valid_user() {
+		// please refer -> @BeforeEach
+		String password = this.dbProxy.selectPasswordByAccountNum(1234);
+		assertEquals(password, "1234");
+		
+		// please refer -> @BeforeEach
+		password = this.dbProxy.selectPasswordByAccountNum(9876);
+		assertEquals(password, "4567");
 	}
 }

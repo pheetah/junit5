@@ -18,11 +18,11 @@ public class Account {
 	
 	
 	public void enter(ATM atm, String password) {
+		atm.readAccountNum(this.account_number);
 		boolean isValid = atm.verify(password);
+	
 		
-		if(isValid) {
-			atm.readAccountNum(this.account_number);
-		}else {
+		if(!isValid) {
 			atm.showErrorMessage("You entered the wrong PIN.");
 			this.wrongEntranceCount++;
 			

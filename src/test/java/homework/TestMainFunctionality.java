@@ -9,6 +9,7 @@ import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 import org.mockito.Mockito;
 import static org.mockito.ArgumentMatchers.anyInt;
+import static org.mockito.Mockito.doThrow;
 
 class TestMainFunctionality {
 	private ATM atm;
@@ -216,5 +217,21 @@ class TestMainFunctionality {
 		this.account.checkBalance(this.atm);
 
 		Mockito.verify(this.display, Mockito.times(1)).display(return_mock_balance + " TL");
+	}
+	
+	@Test
+	void test_atm_should_display_error_message_when_unverified_user_enters() {
+		doThrow(UnsupportedOperationException.class)
+		.when(this.dbProxy)
+		.selectPasswordByAccountNum(8888);
+		
+		//log user in, before transaction
+		this.account.account_number = 8888;		
+		this.atm.readAccountNum(this.account.account_number);
+		
+		this.account.enter(this.atm, "1234");
+		
+		Mockito.verify(this.display, Mockito.times(1)).display("Specified account does not exist.");
+
 	}
 }

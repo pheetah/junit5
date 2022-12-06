@@ -30,6 +30,7 @@ public class ATM implements ATMBuilder {
 		}
 		catch(Exception e) {
 			this.display.display("Specified account does not exist.");
+			return false;
 		}
 		
 		if(password == dbPassword) {
