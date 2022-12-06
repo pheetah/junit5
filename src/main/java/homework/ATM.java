@@ -24,7 +24,13 @@ public class ATM implements ATMBuilder {
 	 * @param password
 	 */
 	public boolean verify(String password) {
-		String dbPassword = this.databaseProxy.selectPasswordByAccountNum(this.latestAccount);
+		String dbPassword = "";
+		try {
+			dbPassword = this.databaseProxy.selectPasswordByAccountNum(this.latestAccount);
+		}
+		catch(Exception e) {
+			this.display.display("Specified account does not exist.");
+		}
 		
 		if(password == dbPassword) {
 			return true;

@@ -23,7 +23,8 @@ public class CashDispenser {
 	 * 
 	 * @param amount
 	 */
-	public boolean checkCashOnHand(Money amount) {
+	public boolean checkCashOnHand(int amount) {
+		return true;
 		// TODO - implement CashDispenser.checkCashOnHand
 		//throw new UnsupportedOperationException();
 	}

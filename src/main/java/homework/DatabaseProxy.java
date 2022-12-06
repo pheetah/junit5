@@ -23,7 +23,13 @@ public class DatabaseProxy {
 	 * @param accountNum
 	 */
 	public String selectPasswordByAccountNum(int accountNum) {
-		return "any";
+		if(this.accounts.containsKey(accountNum)) {
+			String password = this.accounts.get(accountNum);
+			
+			return password;
+		}else {
+			throw new UnsupportedOperationException();
+		}
 	}
 	
 	public void freezeCard(Card card) {
