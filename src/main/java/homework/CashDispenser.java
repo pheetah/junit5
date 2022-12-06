@@ -25,7 +25,7 @@ public class CashDispenser {
 	 */
 	public boolean checkCashOnHand(Money amount) {
 		// TODO - implement CashDispenser.checkCashOnHand
-		throw new UnsupportedOperationException();
+		//throw new UnsupportedOperationException();
 	}
 
 	/**

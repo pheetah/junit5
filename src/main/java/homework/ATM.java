@@ -163,7 +163,7 @@ public class ATM implements ATMBuilder {
 	}
 
 	public boolean deliverCash(int amount) {
-		int availableBalance = this.databaseProxy.checkTheBalance(amount);
+		int availableBalance = this.databaseProxy.checkTheBalance(this.latestAccount);
 		
 		if(availableBalance >= amount) {
 			this.databaseProxy.minusBalance(this.latestAccount, amount);
