@@ -2,14 +2,12 @@ package homework;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.AfterEach;
-
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
 
-
-class TestTransferMoneyIntegration {
+class TestDbIntegration {
 
 	private int maximumWithdrawal = 5;
 	private int minimumWithdarawal = 1;
@@ -193,4 +191,5 @@ class TestTransferMoneyIntegration {
 		
 		Mockito.verify(this.display, Mockito.times(1)).display("You don't have enough balance.");
 	}
+
 }
