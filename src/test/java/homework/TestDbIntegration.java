@@ -46,7 +46,7 @@ class TestDbIntegration {
 	}
 	
 	
-	//even though real databases are created inside function, guaranteed db resets
+	//even though real databases are created inside functions, guaranteed db resets
 	@AfterEach
 	void reset() {
 		this.dbProxy = Mockito.mock(DatabaseProxy.class); 
