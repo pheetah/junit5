@@ -14,7 +14,7 @@ public class CardReader {
 	}
 	
 	public boolean checkCardValidity(Card card) {
-		if(card.status == "VALID") {
+		if(card.status.equals("VALID")) {
 			return true;
 		}else {
 			this.atm.showErrorMessage("Inserted card is not valid.");

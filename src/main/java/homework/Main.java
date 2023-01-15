@@ -2,20 +2,26 @@ package homework;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.util.*;  
 
 public class Main {
-	  public static boolean insertCard() {
+	  public static boolean insertCard(Account account, CardReader cardReader) {
 		  	System.out.println("Please insert your Card (ID)");
-			  
 	        // Enter data using BufferReader
-	        BufferedReader reader = new BufferedReader(
-	            new InputStreamReader(System.in));
+		  	Scanner reader= new Scanner(System.in); 
 	 
 	        // Reading data using readLine
 	        int cardId;
+	        String cardStatus;
 			try {
-				String strCardId = reader.readLine();
+				String strCardId = reader.next();
 				cardId = Integer.parseInt(strCardId);
+				
+			  	System.out.println("Please insert your Card status 'VALID' or 'INVALID'");
+
+			  	reader = new Scanner(System.in); 
+				cardStatus = reader.next();
+				
 			} catch (Exception e) {
 				// TODO Auto-generated catch block
 				System.out.println("Invalid Card");
@@ -24,6 +30,9 @@ public class Main {
 			}
 	        // Printing the read line
 	        System.out.println(cardId);
+	        Card card = new Card(cardId);
+	        card.status = cardStatus;
+	        account.insertCard(cardReader, card);
 	        return true;
 	}
 	  
@@ -49,10 +58,11 @@ public class Main {
 	  
 	  
 	public static void main(String[] args) {
-		  	insertCard();
 		  	ATM atm = initializeAtm();
 		  	CardReader cardReader = new CardReader(atm);
-		  	
+			Account account = new Account();
+		  	insertCard(account, cardReader);
+
 		  	atm.switchOff();
 		  	System.out.println(atm);
 	}
