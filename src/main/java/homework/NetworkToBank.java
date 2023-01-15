@@ -22,7 +22,7 @@ public class NetworkToBank {
 
 	public void closeConnection() {
 		// TODO - implement NetworkToBank.closeConnection
-		throw new UnsupportedOperationException();
+		//throw new UnsupportedOperationException();
 	}
 
 	/**

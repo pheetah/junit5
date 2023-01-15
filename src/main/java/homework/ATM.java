@@ -139,6 +139,7 @@ public class ATM implements ATMBuilder {
 		
 		try {
 			this.networkToBank.closeConnection();
+			this.display.display("Closed network to bank connection successfully");
 		}catch(Exception e) {
 			// normally it should be declared in separate module as constant!
 			String shutdownErrorMessage = "Can't close network connection, contact mainteiners!";

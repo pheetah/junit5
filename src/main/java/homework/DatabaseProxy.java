@@ -63,7 +63,8 @@ public class DatabaseProxy {
 
 	public int createNewAccount() {
 		// TODO - implement DatabaseProxy.createNewAccount
-		throw new UnsupportedOperationException();
+		//throw new UnsupportedOperationException();
+		return 1;
 	}
 	
 	public int selectBalanceInformation() {

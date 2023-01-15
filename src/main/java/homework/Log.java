@@ -4,7 +4,6 @@ public class Log {
 
 	public Log() {
 		// TODO - implement Log.Log
-		throw new UnsupportedOperationException();
 	}
 
 	/**
@@ -13,7 +12,7 @@ public class Log {
 	 */
 	public void logSend(Message message) {
 		// TODO - implement Log.logSend
-		throw new UnsupportedOperationException();
+		//throw new UnsupportedOperationException();
 	}
 
 	/**
@@ -22,7 +21,7 @@ public class Log {
 	 */
 	public void logResponse(String status) {
 		// TODO - implement Log.logResponse
-		throw new UnsupportedOperationException();
+		//throw new UnsupportedOperationException();
 	}
 
 	/**
@@ -31,12 +30,12 @@ public class Log {
 	 */
 	public void logCashDispensed(Money amount) {
 		// TODO - implement Log.logCashDispensed
-		throw new UnsupportedOperationException();
+		//throw new UnsupportedOperationException();
 	}
 
 	public void logEnvelopeAccepted() {
 		// TODO - implement Log.logEnvelopeAccepted
-		throw new UnsupportedOperationException();
+		//throw new UnsupportedOperationException();
 	}
 
 }

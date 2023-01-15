@@ -6,7 +6,6 @@ public class Display {
 	
 	public Display() {
 		// TODO - implement Display.Display
-		throw new UnsupportedOperationException();
 	}
 
 	/**
@@ -15,6 +14,7 @@ public class Display {
 	 */
 	public void display(String message) {
 		this.displayMessage = message;
+		System.out.println(message);
 		// TODO - implement Display.display
 		//throw new UnsupportedOperationException();
 	}
