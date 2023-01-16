@@ -203,8 +203,14 @@ public class ATM implements ATMBuilder {
 		}
 	}
 	
+	// DEPRECATED
 	public void checkBalance() {
 		int balance = this.databaseProxy.selectBalanceInformation();
+		this.display.display(Integer.toString(balance) + " TL");
+	}
+	
+	public void selectBalanceInfo(int account_id) {
+		int balance = this.databaseProxy.checkTheBalance(account_id);
 		this.display.display(Integer.toString(balance) + " TL");
 	}
 }

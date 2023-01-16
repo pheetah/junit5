@@ -50,7 +50,7 @@ public class Account {
 	}
 	
 	public void checkBalance(ATM atm) {
-		atm.checkBalance();
+		atm.selectBalanceInfo(this.account_number);
 	}
 	
 }
