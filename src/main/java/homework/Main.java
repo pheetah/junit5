@@ -5,10 +5,10 @@ import java.io.InputStreamReader;
 import java.util.*;  
 
 public class Main {
-	  public static boolean insertCard(Account account, CardReader cardReader) {
+	  public static boolean insertCard(Account account, CardReader cardReader, ATM atm) {
 		  	System.out.println("Please insert your Card (ID)");
 	        // Enter data using BufferReader
-		  	Scanner reader= new Scanner(System.in); 
+		  	Scanner reader = new Scanner(System.in); 
 	 
 	        // Reading data using readLine
 	        int cardId;
@@ -24,16 +24,21 @@ public class Main {
 				
 			} catch (Exception e) {
 				// TODO Auto-generated catch block
-				System.out.println("Invalid Card");
 				System.out.println("Ejecting Card...");
 				return false;
 			}
 	        // Printing the read line
-	        System.out.println(cardId);
+	        System.out.println("DEBUG: " + cardId);
 	        Card card = new Card(cardId);
+	        account.account_number = cardId;
 	        card.status = cardStatus;
 	        account.insertCard(cardReader, card);
-	        return true;
+	        
+	        if(cardStatus.equals("VALID")) {
+	        	return true;
+	        }else {
+		        return false;
+	        }
 	}
 	  
 	
@@ -55,16 +60,62 @@ public class Main {
 		return atm;
 	}
 	
+	
+	public static boolean login(Account account, ATM atm) {		
+		String password;
+		try {
+		  	System.out.println("Please enter your password");
+
+		  	Scanner reader = new Scanner(System.in); 
+			password = reader.next();
+			boolean isPasswordCorrect = account.enter(atm, password);
+			
+			if(isPasswordCorrect) {
+				return true;
+			}else {
+				return false;
+			}
+			
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			System.out.println("Error on validation password");
+			return false;
+		}
+	}
+	
 	  
 	  
 	public static void main(String[] args) {
 		  	ATM atm = initializeAtm();
 		  	CardReader cardReader = new CardReader(atm);
 			Account account = new Account();
-		  	insertCard(account, cardReader);
+		  	boolean isInsertedSuccessfully = insertCard(account, cardReader, atm);
+		  	
+		  	if(!isInsertedSuccessfully) {
+		  		atm.showErrorMessage("Unexpected behaviour occured.");
+		  		atm.switchOff();
+		  		return;		  		
+		  	}
+		  	
+		  	boolean status = false;
+		  	for (int i = 0; i < 3; i++) {
+		  		status = login(account, atm);
+		  		
+		  		if(status == true) {
+		  			break;
+		  		}
+		  	}
+		  	
+		  	if(status == false) {
+		  		atm.showErrorMessage("Unexpected behaviour occured.");
+		  		atm.switchOff();
+		  		return;
+		  	}
+		  	
 
 		  	atm.switchOff();
 		  	System.out.println(atm);
+		  	System.out.println(status);
 	}
 	  
 }

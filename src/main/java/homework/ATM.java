@@ -25,6 +25,9 @@ public class ATM implements ATMBuilder {
 	 */
 	public boolean verify(String password) {
 		String dbPassword = "";
+		
+		System.out.println("DEBUG: " + this.latestAccount + " and " + password);
+		
 		try {
 			dbPassword = this.databaseProxy.selectPasswordByAccountNum(this.latestAccount);
 		}
@@ -33,7 +36,7 @@ public class ATM implements ATMBuilder {
 			return false;
 		}
 		
-		if(password == dbPassword) {
+		if(password.equalsIgnoreCase(dbPassword)) {
 			return true;
 		}else {
 			return false;

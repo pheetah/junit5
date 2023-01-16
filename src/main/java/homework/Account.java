@@ -17,7 +17,7 @@ public class Account {
 	}
 	
 	
-	public void enter(ATM atm, String password) {
+	public boolean enter(ATM atm, String password) {
 		atm.readAccountNum(this.account_number);
 		boolean isValid = atm.verify(password);
 	
@@ -29,7 +29,11 @@ public class Account {
 			if(this.wrongEntranceCount >= 3) {
 				atm.freezeCard();
 			}
+			
+			return false;
 		}
+		
+		return true;
 	}
 	
 	
