@@ -38,16 +38,16 @@ public class DatabaseProxy {
 
 	public void minusBalance(int account_number, int amount) {
 		System.out.println("minus balance: " + amount);
-		System.out.println("from account balance: " + account_number);
+		System.out.println("from account ID: " + account_number);
 		if(this.balances.containsKey(account_number)) {
 			int accountAmount = this.balances.get(account_number);
 			accountAmount = accountAmount - amount;
-			System.out.println("New balance:" + accountAmount);
 			if(accountAmount < 0) {
 				throw new UnsupportedOperationException();
+			}else {
+				System.out.println("New balance:" + accountAmount);
+				this.balances.put(account_number, accountAmount);
 			}
-			
-			this.balances.put(account_number, accountAmount);
 		}
 		
 	}
