@@ -14,8 +14,8 @@ public class Transaction {
 			int amount
 	) {
 		try {
-			this.dbProxy.plusBalance(senderAccountId, amount);
 			this.dbProxy.minusBalance(sendingAccountId, amount);
+			this.dbProxy.plusBalance(senderAccountId, amount);
 			return true;
 		}
 		catch(Exception e) {
