@@ -164,16 +164,19 @@ public class Main {
 		  		return;
 		  	}
 		  	
+		  	
+	  	  System.out.println(
+	  			"Press '0' to exit. "
+	  	  		+ "\n '1' to check balance. "
+	  	  		+ "\n '2' to withdraw money."
+	  	  		+ "\n '3' to deposit money."
+	  	  		+ "\n '4' to transfer money."
+	  	  	);
 		  	// very bad code :-(
 		  	String userState = "";
 		  	while (!userState.equalsIgnoreCase("0")) {
-		  	  System.out.println(
-		  			"Press '0' to exit. "
-		  	  		+ "\n '1' to check balance. "
-		  	  		+ "\n '2' to withdraw money."
-		  	  		+ "\n '3' to deposit money."
-		  	  		+ "\n '4' to transfer money."
-		  	  	);
+		  		
+		  	  System.out.println("Please select the type of operation.");
 		  	  Scanner reader = new Scanner(System.in);
 		  	  userState = reader.next();
 		  	  
@@ -187,6 +190,7 @@ public class Main {
 		  	  }else if(userState.equals("4")) {
 		  		  transferMoney(account, atm);
 		  	  }
+		  	  
 		  	}
 
 		  	

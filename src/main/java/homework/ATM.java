@@ -195,6 +195,11 @@ public class ATM implements ATMBuilder {
 	
 	public void transfer(int accountIdToSend, int amount) {
 		Transaction transaction = new Transaction(this.databaseProxy);
+
+		if(!this.databaseProxy.accounts.containsKey(accountIdToSend)) {
+			this.display.display("The receiver account is invalid.");
+			return;
+		};
 		
 		boolean isMoneySent = transaction.transfer(this.latestAccount, accountIdToSend, amount);
 		
